@@ -1,0 +1,9 @@
+<h3 class="heading text-2xl mb-2">{{level_name}}</h3>
+<div class="card ~neutral !low p-0">
+{% for rep in reps %}
+{% include "includes/rep.html" %}
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+</div>

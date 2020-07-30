@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{% block title %}{% endblock %} | Who Are My Representatives</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="Quickly find all the government officials who represent you, from the local sherrif to the president." />
+  <meta name="description" content="Quickly find all the government officials who represent you, from the local sherrif to the president." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="WhoAreMyRepresentatives.org" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/static/icon.png" type="image/png" />
+  <link rel="icon" href="/static/icon.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/a17t@0.2.2/dist/a17t.css" integrity="sha256-yQf30DEPiNcRwCCGqMQzKHUzQ4ado4YGWfO7uWfNZZk=" crossorigin="anonymous">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script async defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body class="section ~neutral !high bg-blue-800 min-h-screen">
+  <main class="mx-auto px-6 py-12 md:py-24 max-w-3xl">
+    {% block content %}
+    {% endblock %}
+  </main>
+  <noscript>
+    <img src="https://shynet.rmrm.io/ingress/deb172a4-1172-4a8a-ac51-fc3e2a71ca09/pixel.gif">
+  </noscript>
+  <script src="https://shynet.rmrm.io/ingress/deb172a4-1172-4a8a-ac51-fc3e2a71ca09/script.js"></script> 
+</body>
+
+</html>

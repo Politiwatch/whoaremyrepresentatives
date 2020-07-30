@@ -1,0 +1,142 @@
+<section>
+    <details class="outline-none">
+        <summary class="cursor-pointer flex align-center justify-between items-center p-4">
+            <div class="md:flex align-center justify-between items-center md:w-auto flex-grow">
+                <div class="flex flex-wrap items-center">
+                    <span class="flex-grow flex align-center">
+                        <span class="icon block mr-2 mt-1" style="color: {{rep.party_color}};">
+                            <i class="text-xs fas fa-circle fa-xs"></i>
+                        </span>
+                        <h1 class='heading text-2xl font-medium'>{{rep.name}}</h1>
+                    </span>
+                </div>
+                <div class="flex items-center">
+                    <h3 class="subheading text-lg mr-4 flex-grow">{{rep.office.name}}</h3>
+                    <span class="icon md:mr-2">
+                        <i class="fas fa-plus open-icon"></i>
+                        <i class="fas fa-minus close-icon"></i>
+                    </span>
+                </div>
+            </div>
+        </summary>
+
+        <div class="md:flex p-4 overflow-hidden section ~neutral border-t">
+            <div class="w-6/12 mb-8 md:mb-0 mx-auto md:w-2/12 rounded-lg overflow-hidden self-start">
+                <picture class="rounded-lg">
+                    {% if rep.photoUrl %}
+                    <source srcset="https://images.weserv.nl/?url={{rep.photoUrl|urlescape}}">
+                    {% endif %}
+                    <img src="https://i.imgur.com/6hCSeXZ.png" alt="Photo not found">
+                </picture>
+            </div>
+            <div class="md:w-10/12 md:ml-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div>
+                        <p class="support">
+                            <i class="fas fa-users"></i>
+                            Party
+                        </p>
+                        <p class="text-gray-900">{{rep.party|replace("Party", "")|replace(" ,", ",")}}</p>
+                    </div>
+                    {% for url in rep.urls %}
+                    <div>
+                        <p class="support">
+                            <i class="fas fa-globe"></i>
+                            Website
+                        </p>
+                        <p><a class="text-gray-900" href="{{url}}" target="_blank">
+                                {{url|replace("https://", "")|replace("http://", "")|replace("www.", "")|truncate(14, True, '...', 0)}}&nbsp;&nearr;
+                            </a></p>
+                    </div>
+                    {% endfor %}
+                    {% for channel in rep.channels %}
+                    {% if channel.type == "Facebook" or channel.type == "Twitter" %}
+                    <div>
+                        {% if channel.type == "Facebook" %}
+                        <p class="support">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook
+                        </p>
+                        <a class="text-gray-900" href="https://facebook.com/{{channel.id}}" target="_blank">
+                            {{channel.id|truncate(14, True, '...', 0)}}&nbsp;&nearr;</a>
+                        {% elif channel.type == "Twitter" %}
+                        <p class="support">
+                            <i class="fab fa-twitter"></i>
+                            Twitter
+                        </p>
+                        <a class="text-gray-900" href="https://twitter.com/{{channel.id}}" target="_blank">
+                            @{{channel.id|truncate(14, True, '...', 0)}}&nbsp;&nearr;</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for phone in rep.phones %}
+                    <div>
+                        <p class="support">
+                            <i class="fas fa-phone-alt"></i>
+                            Phone
+                        </p>
+                        <p><a class="text-gray-900" href="tel:{{phone}}" target="_blank">{{phone}}</a></p>
+                    </div>
+                    {% endfor %}
+                    <div>
+                        <p class="support">
+                            <i class="fab fa-wikipedia-w"></i>
+                            Learn More
+                        </p>
+                        <p class="text-gray-900">
+                            <a href="https://en.wikipedia.org/w/index.php?search={{rep.name|urlescape}}"
+                                target="_blank">
+                                Rep&nbsp;&nearr;
+                            </a> &bull;
+                            <a href="https://en.wikipedia.org/w/index.php?search={{rep.office.name|urlescape}}" target="_blank">
+                                Role&nbsp;&nearr;
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                {% if rep.opensecrets %}
+                <hr class="sep h-8">
+                <div class="card ~neutral border p-4">
+                    <div class="flex flex-wrap mb-4">
+                        <div class="flex-grow">
+                            <h5 class="label leading-none">{{rep.opensecrets.secrets.cand_name}} on OpenSecrets</h5>
+                            <p class="support mt-1">Source: {{rep.opensecrets.secrets.origin}}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        <div>
+                            <p class="support">First Elected</p>
+                            <p>{{rep.opensecrets.secrets.first_elected}}</p>
+                        </div>
+                        <div>
+                            <p class="support">Next Election</p>
+                            <p>{{rep.opensecrets.secrets.next_election}}</p>
+                        </div>
+                        <div>
+                            <p class="support">Raised ({{rep.opensecrets.secrets.cycle}} cycle)</p>
+                            <p>${{rep.opensecrets.secrets.total|number}}</p>
+                        </div>
+                        <div>
+                            <p class="support">Spent ({{rep.opensecrets.secrets.cycle}} cycle)</p>
+                            <p>${{rep.opensecrets.secrets.spent|number}}</p>
+                        </div>
+                        <div>
+                            <p class="support">Cash On Hand</p>
+                            <p>${{rep.opensecrets.secrets.cash_on_hand|number}}</p>
+                        </div>
+                        <div>
+                            <p class="support">More Info</p>
+                            <p>
+                                <a href="{{rep.opensecrets.secrets.source}}" target="_blank">Full Profile&nbsp;&nearr;</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </details>
+
+
+</section>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Something went wrong{% endblock %}
+
+{% block content %}
+<div class="md:flex md:pt-32 pt-16 h-full justify-center items-center">
+    <article>
+        <h2 class="heading text-white text-2xl mb-2">Something went wrong!</h2>
+        <article class="card ~critical !high my-2">
+            {{error}}
+        </article>
+        <p><a href="/" class="button text-black bg-white">Return Home</a></p>
+    </article>
+</div>
+{% endblock %}

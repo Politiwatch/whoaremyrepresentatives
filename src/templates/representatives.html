@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{% if input.line1 %}{{input.line1}}, {% endif %}{% if input.city %}{{input.city}}, {% endif %}{% if input.state %}{{input.state}} {% endif %}{% if input.zip %}{{input.zip}}{% endif %}{% endblock %}
+
+{% block content %}
+<h1 class="heading text-white text-4xl">Who are my representatives?</h1>
+<h1 class="font-secondary text-white text-xl flex items-center">
+    <span>
+        {% if input.line1 %}{{input.line1}},{% endif %}
+        {% if input.city %}{{input.city}},{% endif %}
+        {% if input.state %}{{input.state}}{% endif %}
+        {% if input.zip %}{{input.zip}}{% endif %}
+    </span>
+    <a href="/" title="Enter New Address" class="ml-2 bg-white text-gray-700 rounded-full p-1 text-base items-center inline-flex ml-1"><i class="fas fa-redo fa-xs"></i></a>
+</h1>
+
+<hr class="sep">
+
+{% if federal %}
+{% with level_name="Federal", reps=federal %}
+{% include "includes/rep_level.html" with context %}
+{% endwith %}
+<hr class="sep">
+{% endif %}
+
+{% if state %}
+{% with level_name="State", reps=state %}
+{% include "includes/rep_level.html" with context %}
+{% endwith %}
+<hr class="sep">
+{% endif %}
+
+{% if local %}
+{% with level_name="Local", reps=local %}
+{% include "includes/rep_level.html" with context %}
+{% endwith %}
+<hr class="sep">
+{% endif %}
+
+<p class="text-white">By <a href="https://politiwatch.org" class="underline" target="_blank">Politiwatch</a>. Data from <a
+        href="https://google.com" class="underline" target="_blank">Google</a>, the <a href="https://www.votinginfoproject.org/" target="_blank" class="underline">Voting Information
+        Project</a>, and <a href="opensecrets.org" class="underline" target="_blank">OpenSecrets</a>. Please consider making a <a href="https://donorbox.org/whoaremyrepresentatives" class="underline">tax-deductible donation</a>.</p>
+{% endblock %}

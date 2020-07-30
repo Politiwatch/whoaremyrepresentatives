@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Find out who represents you in government{% endblock %}
+
+{% block content %}
+<div class="md:flex md:pt-32 pt-16 h-full justify-center items-center">
+    <article>
+        <h1 class="heading text-white text-4xl mb-2">Who are my representatives?</h1>
+        <form method="GET" action="/representatives" class="mx-auto flex flex-wrap justify-between text-gray-700 font-primary">
+            <input type="text" name="address" placeholder="Your address (or your neighbor's)" aria-label="Address"
+                class="input ~info md:mr-2 bg-white flex-grow mb-4 md:mb-2 h-10 border-none w-full md:w-6/12">
+            <input type="text" name="zip" placeholder="Zipcode" aria-label="Zipcode"
+                class="input ~info w-6/12 bg-white md:w-3/12 md:mr-2 mb-2 h-10 border-none">
+            <button type="submit"
+                class="button bg-white w-5/12 md:w-auto justify-center mb-2 h-10 text-gray-700">Search</button>
+        </form>
+        <p class="font-secondary text-white">By <a href="https://politiwatch.org">Politiwatch</a>. <a href="https://donorbox.org/whoaremyrepresentatives">Donate &rarr;</a></p>
+    </article>
+</div>
+{% endblock %}
