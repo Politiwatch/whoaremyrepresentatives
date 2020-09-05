@@ -5,7 +5,6 @@ import os
 
 app = Flask(__name__)
 
-
 @app.template_filter()
 def number(value):
     return "{:,.2f}".format(float(value))
