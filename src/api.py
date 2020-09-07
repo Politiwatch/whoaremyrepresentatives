@@ -126,3 +126,4 @@ def poll_opensecrets(state: str, cache_only: bool = True):
     except Exception as e:
         print(f"could not poll OpenSecrets: {e}")
         return {}
+
