@@ -30,11 +30,11 @@ def get_representatives(zipcode, address):
             repdata["officials"][officialIndex]["office"] = office
 
     opensecrets_data = poll_opensecrets(repdata["normalizedInput"]["state"])
-    for rep in list(filter(lambda k: "country" in k["office"]["levels"], repdata["officials"])):
-            close_matches = difflib.get_close_matches(
-                rep["name"], opensecrets_data.keys(), cutoff=.8)
-            for match in close_matches:
-                rep["opensecrets"] = opensecrets_data[match]
+    for rep in filter(lambda k: "country" in k["office"]["levels"], repdata["officials"]):
+        close_matches = difflib.get_close_matches(
+            rep["name"], opensecrets_data.keys(), cutoff=.8)
+        for match in close_matches:
+            rep["opensecrets"] = opensecrets_data[match]
 
     if "contests" in votedata:
         for contest in votedata["contests"]:
