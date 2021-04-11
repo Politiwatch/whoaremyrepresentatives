@@ -19,6 +19,17 @@ def urlescape(url):
 def index():
     return render_template("index.html")
 
+@app.route("/api")
+def pub_api():
+    zipcode = request.args.get("zip")
+    address = request.args.get("address")
+
+    response = jsonify({
+        "data": api.get_representatives(zipcode, address),
+        "source": "WhoAreMyRepresentatives.org, with data from Google, the Voting Information Project, and OpenSecrets."
+    })
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @app.route("/representatives")
 def representatives():
